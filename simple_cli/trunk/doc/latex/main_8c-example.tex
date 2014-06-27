@@ -1,0 +1,66 @@
+\hypertarget{main_8c-example}{\section{main.\+c}
+}
+Initialization function for C\+L\+I.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cli} & \+: pointer to instantiated C\+L\+I\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#include <stdio.h>}
+\textcolor{preprocessor}{#include <string.h>}
+\textcolor{preprocessor}{#include "\hyperlink{simple__cli_8h}{simple\_cli.h}"}
+
+\textcolor{comment}{// User function 1.}
+\textcolor{keywordtype}{void} fun1(\textcolor{keywordtype}{char} *response, \textcolor{keywordtype}{size\_t} responseSize, \textcolor{keywordtype}{char} **par)
+\{
+    \textcolor{keywordtype}{char} *par1 = *(par + 0);
+    \textcolor{keywordtype}{char} *par2 = *(par + 1);
+
+    \_snprintf(response, responseSize - 1, \textcolor{stringliteral}{"fun1 : <%s><%s>\(\backslash\)r\(\backslash\)n"}, par1, par2);
+\}
+
+\textcolor{comment}{// User function 2.}
+\textcolor{keywordtype}{void} fun2(\textcolor{keywordtype}{char} *response, \textcolor{keywordtype}{size\_t} responseSize, \textcolor{keywordtype}{char} **par)
+\{
+    \textcolor{keywordtype}{char} *par1 = *(par + 0);
+    \textcolor{keywordtype}{char} *par2 = *(par + 1);
+    \textcolor{keywordtype}{char} *par3 = *(par + 2);
+    \textcolor{keywordtype}{char} *par4 = *(par + 3);
+
+    \_snprintf(response, responseSize - 1, \textcolor{stringliteral}{"fun2 : <%s><%s><%s><%s>\(\backslash\)r\(\backslash\)n"}, par1, par2, par3, par4);
+\}
+
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void})
+\{
+    \hyperlink{structcli__t}{cli\_t} cli;
+
+    CliInit(&cli);
+
+    \hyperlink{group___s_i_m_p_l_e___c_l_i_ga01cfcf15f5fa99662be66ad602325b19}{CliRegisterCommand}(&cli, \textcolor{stringliteral}{"fun1"}, fun1, 2);
+    \hyperlink{group___s_i_m_p_l_e___c_l_i_ga01cfcf15f5fa99662be66ad602325b19}{CliRegisterCommand}(&cli, \textcolor{stringliteral}{"fun2"}, fun2, 4);
+
+    \textcolor{keywordtype}{char} cmd[] = \textcolor{stringliteral}{"fun1 one two"};
+
+    \textcolor{keywordtype}{char} *response = NULL;
+    response = \hyperlink{group___s_i_m_p_l_e___c_l_i_gac2f554f89e0d5ff45e2a29fd0a14fa81}{CliParseCommand}(&cli, cmd);
+
+
+    \textcolor{keywordflow}{if} (response != NULL)
+    \{
+        printf(\textcolor{stringliteral}{"%s\(\backslash\)r\(\backslash\)n"}, response);
+    \}
+    \textcolor{keywordflow}{else}
+    \{
+        printf(\textcolor{stringliteral}{"no cmd found\(\backslash\)r\(\backslash\)n"});
+    \}
+
+
+    getchar();
+
+    \textcolor{keywordflow}{return} 0;
+\}
+\end{DoxyCodeInclude}
+ 

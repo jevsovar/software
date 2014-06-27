@@ -1,0 +1,113 @@
+\hypertarget{group___s_i_m_p_l_e___c_l_i}{\section{Simple C\+L\+I}
+\label{group___s_i_m_p_l_e___c_l_i}\index{Simple C\+L\+I@{Simple C\+L\+I}}
+}
+
+
+Simple Command line interface tool.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{simple__cli_8c}{simple\+\_\+cli.\+c}
+\begin{DoxyCompactList}\small\item\em Simple C\+L\+I source code file. \end{DoxyCompactList}\item 
+file \hyperlink{simple__cli_8h}{simple\+\_\+cli.\+h}
+\begin{DoxyCompactList}\small\item\em Simple C\+L\+I header file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcli__t}{cli\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Main C\+L\+I structure definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___s_i_m_p_l_e___c_l_i_gac5c0c1eca89291c3464b4ff294b13f05}{\#define \hyperlink{group___s_i_m_p_l_e___c_l_i_gac5c0c1eca89291c3464b4ff294b13f05}{M\+A\+X\+\_\+\+N\+R\+\_\+\+O\+F\+\_\+\+C\+M\+D\+S}~10}\label{group___s_i_m_p_l_e___c_l_i_gac5c0c1eca89291c3464b4ff294b13f05}
+
+\begin{DoxyCompactList}\small\item\em Maximum number of commands that can be registered in one C\+L\+I instance. \end{DoxyCompactList}\item 
+\hypertarget{group___s_i_m_p_l_e___c_l_i_gabd0278272d66be331cab5531626c475d}{\#define \hyperlink{group___s_i_m_p_l_e___c_l_i_gabd0278272d66be331cab5531626c475d}{M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+O\+F\+\_\+\+C\+M\+D\+\_\+\+N\+A\+M\+E}~20}\label{group___s_i_m_p_l_e___c_l_i_gabd0278272d66be331cab5531626c475d}
+
+\begin{DoxyCompactList}\small\item\em Longest command name allowed to be registered. \end{DoxyCompactList}\item 
+\hypertarget{group___s_i_m_p_l_e___c_l_i_ga17e61582091ee023dd2d011f13e8f971}{\#define \hyperlink{group___s_i_m_p_l_e___c_l_i_ga17e61582091ee023dd2d011f13e8f971}{M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+O\+F\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}~100}\label{group___s_i_m_p_l_e___c_l_i_ga17e61582091ee023dd2d011f13e8f971}
+
+\begin{DoxyCompactList}\small\item\em Lengt of response buffer. \end{DoxyCompactList}\item 
+\hypertarget{group___s_i_m_p_l_e___c_l_i_gad8bacdd29d97762d63a242cba6444b32}{\#define \hyperlink{group___s_i_m_p_l_e___c_l_i_gad8bacdd29d97762d63a242cba6444b32}{M\+A\+X\+\_\+\+N\+R\+\_\+\+O\+F\+\_\+\+P\+A\+R\+A\+M\+E\+T\+E\+R\+S}~4}\label{group___s_i_m_p_l_e___c_l_i_gad8bacdd29d97762d63a242cba6444b32}
+
+\begin{DoxyCompactList}\small\item\em Maximum number of parameters of registered functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_i_m_p_l_e___c_l_i_ga992a0d74b74b790c43d3cde61ee00e7b}{Cli\+Init} (\hyperlink{structcli__t}{cli\+\_\+t} $\ast$cli)
+\begin{DoxyCompactList}\small\item\em Initialization function for C\+L\+I. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_i_m_p_l_e___c_l_i_ga01cfcf15f5fa99662be66ad602325b19}{Cli\+Register\+Command} (\hyperlink{structcli__t}{cli\+\_\+t} $\ast$cli, char $\ast$name, void($\ast$function)(char $\ast$response, size\+\_\+t response\+Size, char $\ast$$\ast$par), uint8\+\_\+t nr\+Of\+Par)
+\begin{DoxyCompactList}\small\item\em Registers selected function to C\+L\+I command definitions. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{group___s_i_m_p_l_e___c_l_i_gac2f554f89e0d5ff45e2a29fd0a14fa81}{Cli\+Parse\+Command} (\hyperlink{structcli__t}{cli\+\_\+t} $\ast$cli, char $\ast$cmd)
+\begin{DoxyCompactList}\small\item\em Checks if passed command matches any registered command and executes that command function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module is used for parsing command strings (eg. from U\+A\+R\+T). 
+
+\subsection{Function Documentation}
+\hypertarget{group___s_i_m_p_l_e___c_l_i_ga992a0d74b74b790c43d3cde61ee00e7b}{\index{Simple C\+L\+I@{Simple C\+L\+I}!Cli\+Init@{Cli\+Init}}
+\index{Cli\+Init@{Cli\+Init}!Simple C\+L\+I@{Simple C\+L\+I}}
+\subsubsection[{Cli\+Init}]{\setlength{\rightskip}{0pt plus 5cm}void Cli\+Init (
+\begin{DoxyParamCaption}
+\item[{{\bf cli\+\_\+t} $\ast$}]{cli}
+\end{DoxyParamCaption}
+)}}\label{group___s_i_m_p_l_e___c_l_i_ga992a0d74b74b790c43d3cde61ee00e7b}
+
+\begin{DoxyParams}{Parameters}
+{\em cli} & \+: pointer to instantiated C\+L\+I \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 91 of file simple\+\_\+cli.\+c.
+
+\hypertarget{group___s_i_m_p_l_e___c_l_i_gac2f554f89e0d5ff45e2a29fd0a14fa81}{\index{Simple C\+L\+I@{Simple C\+L\+I}!Cli\+Parse\+Command@{Cli\+Parse\+Command}}
+\index{Cli\+Parse\+Command@{Cli\+Parse\+Command}!Simple C\+L\+I@{Simple C\+L\+I}}
+\subsubsection[{Cli\+Parse\+Command}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ Cli\+Parse\+Command (
+\begin{DoxyParamCaption}
+\item[{{\bf cli\+\_\+t} $\ast$}]{cli, }
+\item[{char $\ast$}]{cmd}
+\end{DoxyParamCaption}
+)}}\label{group___s_i_m_p_l_e___c_l_i_gac2f554f89e0d5ff45e2a29fd0a14fa81}
+
+\begin{DoxyParams}{Parameters}
+{\em cli} & \+: pointer to chosen C\+L\+I instance \\
+\hline
+{\em cmd} & \+: command string with all function parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to matched function response string if command was found, else returns null pointer 
+\end{DoxyReturn}
+
+
+Definition at line 122 of file simple\+\_\+cli.\+c.
+
+\hypertarget{group___s_i_m_p_l_e___c_l_i_ga01cfcf15f5fa99662be66ad602325b19}{\index{Simple C\+L\+I@{Simple C\+L\+I}!Cli\+Register\+Command@{Cli\+Register\+Command}}
+\index{Cli\+Register\+Command@{Cli\+Register\+Command}!Simple C\+L\+I@{Simple C\+L\+I}}
+\subsubsection[{Cli\+Register\+Command}]{\setlength{\rightskip}{0pt plus 5cm}void Cli\+Register\+Command (
+\begin{DoxyParamCaption}
+\item[{{\bf cli\+\_\+t} $\ast$}]{cli, }
+\item[{char $\ast$}]{name, }
+\item[{void($\ast$)(char $\ast$response, size\+\_\+t response\+Size, char $\ast$$\ast$par)}]{function, }
+\item[{uint8\+\_\+t}]{nr\+Of\+Par}
+\end{DoxyParamCaption}
+)}}\label{group___s_i_m_p_l_e___c_l_i_ga01cfcf15f5fa99662be66ad602325b19}
+
+\begin{DoxyParams}{Parameters}
+{\em cli} & \+: pointer to chosen C\+L\+I instance \\
+\hline
+{\em name} & \+: registered function name \\
+\hline
+{\em function} & \+: pointer to registered function \\
+\hline
+{\em nr\+Of\+Par} & \+: number of parameters of registered function \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 96 of file simple\+\_\+cli.\+c.
+

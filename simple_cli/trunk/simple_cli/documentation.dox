@@ -1,0 +1,93 @@
+
+
+/// @mainpage	Introduction
+///
+/// @section SIMPLE_CLI Simple CLI
+///	Simple CLI is C/C++ Command line interface parser.
+/// It works as parser for execution of program functions.
+/// Its advantages are easy use and small amount of code.
+/// 
+/// Code compiles with C and C++ compilers. Example project is written with Visual Studio Express 2013,
+/// but code can easly be used with other compilers (e.g. GCC) with small modifications.
+///
+/// Main purpouse of this software module is to be used in embedded systems for interface between 
+/// microprocessor controlled device and human or PC software.
+
+
+/// @page		About About
+///
+/// Simple CLI - C/C++ Command line interface parser.
+///
+/// @author		Jan Jevsovar   -   jan.jevsovar@gmail.com
+///
+/// @version	1.0.0
+/// @date		27th June 2014
+///
+/// @copyright
+/// This program is free software; you can redistribute it and/or
+/// modify it under the terms of the GNU General Public License as
+/// published by the Free Software Foundation; either version 2 of
+/// the License, or (at your option) any later version. <br>
+/// <br>This program is distributed in the hope that it will be useful, but
+/// WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+/// General Public License for more details at
+/// http://www.gnu.org/copyleft/gpl.html
+
+
+/// @page		Example Example program
+///				Programming procedure:
+///				- make an instance of Simple CLI module
+/// @code		cli_t cli;
+/// @endcode
+///				- initialize <c>cli</c>
+/// @code		CliInit(&cli);
+/// @endcode
+///				- prepare command function
+/// @code		
+///				// This command accepts two string parameters, converts them to integers and returns their sum.
+///				void sum(char *response, size_t responseSize, char **par)
+///				{
+///					// Get pointers to parameter strings.
+///					char *par1 = *(par + 0);
+///					char *par2 = *(par + 1);
+///				
+///					// Execute user function.
+///					int x = 0;
+///					int y = 0;
+///				
+///					sscanf(par1, "%d", &x);
+///					sscanf(par2, "%d", &y);
+///				
+///					int sum = x + y;
+///				
+///					// Write response.
+///					_snprintf(response, responseSize - 1, "sum = %d\r\n", sum);
+///				}
+/// @endcode
+///				- register command
+/// @code		CliRegisterCommand(&cli, "sum", sum, 2);
+/// @endcode
+///				- everytime you receive new command, check for matching and use the response if any
+/// @code		
+///				char cmd[] = "sum 12 5";
+///				char *response = NULL;
+///				response = CliParseCommand(&cli, cmd);
+///				
+///				if (response != NULL)
+///				{
+///					printf("%s\r\n", response);
+///				}
+///				else
+///				{
+///					printf("no cmd found\r\n");
+///				}
+/// @endcode
+
+
+/// @page		ReleaseLog Release Log
+/// @section	Release Release 1.0.0
+///				- Release date: 27th June 2014
+///				- Initial release
+
+

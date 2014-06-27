@@ -1,0 +1,59 @@
+\hypertarget{simple__cli_8h}{\section{simple\+\_\+cli.\+h File Reference}
+\label{simple__cli_8h}\index{simple\+\_\+cli.\+h@{simple\+\_\+cli.\+h}}
+}
+
+
+Simple C\+L\+I header file.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcli__t}{cli\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Main C\+L\+I structure definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___s_i_m_p_l_e___c_l_i_gac5c0c1eca89291c3464b4ff294b13f05}{\#define \hyperlink{group___s_i_m_p_l_e___c_l_i_gac5c0c1eca89291c3464b4ff294b13f05}{M\+A\+X\+\_\+\+N\+R\+\_\+\+O\+F\+\_\+\+C\+M\+D\+S}~10}\label{group___s_i_m_p_l_e___c_l_i_gac5c0c1eca89291c3464b4ff294b13f05}
+
+\begin{DoxyCompactList}\small\item\em Maximum number of commands that can be registered in one C\+L\+I instance. \end{DoxyCompactList}\item 
+\hypertarget{group___s_i_m_p_l_e___c_l_i_gabd0278272d66be331cab5531626c475d}{\#define \hyperlink{group___s_i_m_p_l_e___c_l_i_gabd0278272d66be331cab5531626c475d}{M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+O\+F\+\_\+\+C\+M\+D\+\_\+\+N\+A\+M\+E}~20}\label{group___s_i_m_p_l_e___c_l_i_gabd0278272d66be331cab5531626c475d}
+
+\begin{DoxyCompactList}\small\item\em Longest command name allowed to be registered. \end{DoxyCompactList}\item 
+\hypertarget{group___s_i_m_p_l_e___c_l_i_ga17e61582091ee023dd2d011f13e8f971}{\#define \hyperlink{group___s_i_m_p_l_e___c_l_i_ga17e61582091ee023dd2d011f13e8f971}{M\+A\+X\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+O\+F\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E}~100}\label{group___s_i_m_p_l_e___c_l_i_ga17e61582091ee023dd2d011f13e8f971}
+
+\begin{DoxyCompactList}\small\item\em Lengt of response buffer. \end{DoxyCompactList}\item 
+\hypertarget{group___s_i_m_p_l_e___c_l_i_gad8bacdd29d97762d63a242cba6444b32}{\#define \hyperlink{group___s_i_m_p_l_e___c_l_i_gad8bacdd29d97762d63a242cba6444b32}{M\+A\+X\+\_\+\+N\+R\+\_\+\+O\+F\+\_\+\+P\+A\+R\+A\+M\+E\+T\+E\+R\+S}~4}\label{group___s_i_m_p_l_e___c_l_i_gad8bacdd29d97762d63a242cba6444b32}
+
+\begin{DoxyCompactList}\small\item\em Maximum number of parameters of registered functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___s_i_m_p_l_e___c_l_i_ga992a0d74b74b790c43d3cde61ee00e7b}{Cli\+Init} (\hyperlink{structcli__t}{cli\+\_\+t} $\ast$cli)
+\begin{DoxyCompactList}\small\item\em Initialization function for C\+L\+I. \end{DoxyCompactList}\item 
+void \hyperlink{group___s_i_m_p_l_e___c_l_i_ga01cfcf15f5fa99662be66ad602325b19}{Cli\+Register\+Command} (\hyperlink{structcli__t}{cli\+\_\+t} $\ast$cli, char $\ast$name, void($\ast$function)(char $\ast$response, size\+\_\+t response\+Size, char $\ast$$\ast$par), uint8\+\_\+t nr\+Of\+Par)
+\begin{DoxyCompactList}\small\item\em Registers selected function to C\+L\+I command definitions. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{group___s_i_m_p_l_e___c_l_i_gac2f554f89e0d5ff45e2a29fd0a14fa81}{Cli\+Parse\+Command} (\hyperlink{structcli__t}{cli\+\_\+t} $\ast$cli, char $\ast$cmd)
+\begin{DoxyCompactList}\small\item\em Checks if passed command matches any registered command and executes that command function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Jan Jevsovar -\/ \href{mailto:jan.jevsovar@gmail.com}{\tt jan.\+jevsovar@gmail.\+com}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+27th June 2014
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+This program is free software; you can redistribute it and/or modify it under the terms of the G\+N\+U General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. ~\newline
+ ~\newline
+This program is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the G\+N\+U General Public License for more details at \href{http://www.gnu.org/copyleft/gpl.html}{\tt http\+://www.\+gnu.\+org/copyleft/gpl.\+html} 
+\end{DoxyCopyright}
+
+
+Definition in file \hyperlink{simple__cli_8h_source}{simple\+\_\+cli.\+h}.
+

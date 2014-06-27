@@ -1,0 +1,57 @@
+Programming procedure\+:
+\begin{DoxyItemize}
+\item make an instance of Simple C\+L\+I module 
+\begin{DoxyCode}
+\hyperlink{structcli__t}{cli\_t} cli;
+\end{DoxyCode}
+
+\item initialize {\ttfamily cli} 
+\begin{DoxyCode}
+\hyperlink{group___s_i_m_p_l_e___c_l_i_ga992a0d74b74b790c43d3cde61ee00e7b}{CliInit}(&cli);
+\end{DoxyCode}
+
+\item prepare command function 
+\begin{DoxyCode}
+\textcolor{comment}{// This command accepts two string parameters, converts them to integers and returns their sum.}
+\textcolor{keywordtype}{void} \hyperlink{main_8c_a2e1da4da72dfb1bd012b07ae14d97435}{sum}(\textcolor{keywordtype}{char} *response, \textcolor{keywordtype}{size\_t} responseSize, \textcolor{keywordtype}{char} **par)
+\{
+    \textcolor{comment}{// Get pointers to parameter strings.}
+    \textcolor{keywordtype}{char} *par1 = *(par + 0);
+    \textcolor{keywordtype}{char} *par2 = *(par + 1);
+
+    \textcolor{comment}{// Execute user function.}
+    \textcolor{keywordtype}{int} x = 0;
+    \textcolor{keywordtype}{int} y = 0;
+
+    sscanf(par1, \textcolor{stringliteral}{"%d"}, &x);
+    sscanf(par2, \textcolor{stringliteral}{"%d"}, &y);
+
+    \textcolor{keywordtype}{int} \hyperlink{main_8c_a2e1da4da72dfb1bd012b07ae14d97435}{sum} = x + y;
+
+    \textcolor{comment}{// Write response.}
+    \_snprintf(response, responseSize - 1, \textcolor{stringliteral}{"sum = %d\(\backslash\)r\(\backslash\)n"}, sum);
+\}
+\end{DoxyCode}
+
+\item register command 
+\begin{DoxyCode}
+\hyperlink{group___s_i_m_p_l_e___c_l_i_ga01cfcf15f5fa99662be66ad602325b19}{CliRegisterCommand}(&cli, \textcolor{stringliteral}{"sum"}, \hyperlink{main_8c_a2e1da4da72dfb1bd012b07ae14d97435}{sum}, 2);
+\end{DoxyCode}
+
+\item everytime you receive new command, check for matching and use the response if any 
+\begin{DoxyCode}
+\textcolor{keywordtype}{char} cmd[] = \textcolor{stringliteral}{"sum 12 5"};
+\textcolor{keywordtype}{char} *response = NULL;
+response = \hyperlink{group___s_i_m_p_l_e___c_l_i_gac2f554f89e0d5ff45e2a29fd0a14fa81}{CliParseCommand}(&cli, cmd);
+
+\textcolor{keywordflow}{if} (response != NULL)
+\{
+    printf(\textcolor{stringliteral}{"%s\(\backslash\)r\(\backslash\)n"}, response);
+\}
+\textcolor{keywordflow}{else}
+\{
+    printf(\textcolor{stringliteral}{"no cmd found\(\backslash\)r\(\backslash\)n"});
+\}
+\end{DoxyCode}
+ 
+\end{DoxyItemize}
