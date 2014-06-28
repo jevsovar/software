@@ -35,7 +35,7 @@ extern "C"
 #define MAX_NR_OF_CMDS			   10
 /// Longest command name allowed to be registered.
 #define MAX_LENGTH_OF_CMD_NAME	   20
-/// Lengt of response buffer.
+/// Length of response buffer.
 #define MAX_LENGTH_OF_RESPONSE	   100
 /// Maximum number of parameters of registered functions.
 #define MAX_NR_OF_PARAMETERS	   4

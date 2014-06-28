@@ -5,6 +5,8 @@
 /// @brief		Simple CLI source code file
 /// @author		Jan Jevsovar   -   jan.jevsovar@gmail.com
 ///
+/// @bug		Function <c>stringLongerThan()</c> crashes if string parameter is null.
+///
 /// @version	1.0.0
 /// @date		27th June 2014
 ///

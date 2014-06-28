@@ -9,6 +9,7 @@ var NAVTREE =
     [ "Release Log", "_release_log.html", [
       [ "Release 1.0.0", "_release_log.html#Release", null ]
     ] ],
+    [ "Bug List", "bug.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", null, [
       [ "Data Structures", "annotated.html", "annotated" ],
