@@ -7,7 +7,7 @@
 /// @brief		Simple CLI header file
 /// @author		Jan Jevsovar   -   jan.jevsovar@gmail.com
 ///
-/// @version	1.0.0
+/// @version	1.0.1
 /// @date		27th June 2014
 ///
 /// @copyright

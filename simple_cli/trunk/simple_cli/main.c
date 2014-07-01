@@ -4,7 +4,7 @@
 ///
 /// @author		Jan Jevsovar   -   jan.jevsovar@gmail.com
 ///
-/// @version	1.0.0
+/// @version	1.0.1
 /// @date		27th June 2014
 ///
 /// @copyright
@@ -24,11 +24,11 @@
 
 /// @brief User function 0. 
 ///	This command accepts two string parameters, converts them to integers and returns their sum.
-void sum(char *response, size_t responseSize, char **par)
+void sum(char *response, size_t responseSize, char *par[2])
 {
 	// Get pointers to parameter strings.
-	char *par1 = *(par + 0);
-	char *par2 = *(par + 1);
+	char *par1 = par[0];
+	char *par2 = par[1];
 	
 	// Execute user function.
 	int x = 0;
@@ -44,19 +44,20 @@ void sum(char *response, size_t responseSize, char **par)
 }
 
 /// @brief User function 1. Accepts two string parameters and prints them out directly.
-void fun1(char *response, size_t responseSize, char **par)
+void fun1(char *response, size_t responseSize, char *par[2])
 {
-	char *par1 = *(par + 0);
-	char *par2 = *(par + 1);
+	char *par1 = par[0];
+	char *par2 = par[1];
 
 	printf("fun1 : <%s><%s>\r\n", par1, par2);
 }
 
 /// @brief User function 2. Accepts two string parameters and prints them out directly.
-void fun2(char *response, size_t responseSize, char **par)
+void fun2(char *response, size_t responseSize, char *par[])
 {
 	char *parameter[4];
-	for (int i = 0; i < 4; i++) parameter[i] = *(par + i);
+	for (int i = 0; i < 4; i++) parameter[i] = par[i];
+	//for (int i = 0; i < 4; i++) parameter[i] = *(par + i);
 
 	_snprintf(response, responseSize - 1, "fun2 : <%s><%s><%s><%s>\r\n", parameter[0], parameter[1], parameter[2], parameter[3]);
 }

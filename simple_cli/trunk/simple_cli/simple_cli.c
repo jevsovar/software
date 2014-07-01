@@ -7,7 +7,7 @@
 ///
 /// @bug		Function <c>stringLongerThan()</c> crashes if string parameter is null.
 ///
-/// @version	1.0.0
+/// @version	1.0.1
 /// @date		27th June 2014
 ///
 /// @copyright
@@ -41,10 +41,11 @@ static uint8_t stringLongerThan(char *string, uint16_t maxLength)
 	return isLonger;
 }
 
-static uint8_t cliParametersSplit(cli_t *cli, char *cmd, char **name, char **par)
+static uint8_t cliParametersSplit(cli_t *cli, char *cmd, char **name)
 {
-	// Split cmd string to name and parameters.
+	// Get command name from command string.
 	*name = strtok(cmd, " ");
+	// Get parameters from command string.
 	uint8_t nrOfParRead = 0;
 	// Check for NR_OF_PARAMETERS + 1 to see also if there is too many parameters
 	for (int parCnt = 0; parCnt < MAX_NR_OF_PARAMETERS + 1; parCnt++)
@@ -125,16 +126,15 @@ void CliRegisterCommand(cli_t *cli, char *name, void(*function)(char *response, 
 
 char* CliParseCommand(cli_t *cli, char *cmd)
 {
-	char *name = 0;
-	char *par[MAX_NR_OF_PARAMETERS];
+	char *cmdNameParsed = 0;
 
 	uint8_t nrOfParRead = 0;
 	uint8_t cmdFound = 0;
 
 	// Parse out command name and parameters,
-	nrOfParRead = cliParametersSplit(cli, cmd, &name, par);
+	nrOfParRead = cliParametersSplit(cli, cmd, &cmdNameParsed);
 	// then check if command matches any registered command.
-	cmdFound = cliCommandCheck(cli, name, nrOfParRead);
+	cmdFound = cliCommandCheck(cli, cmdNameParsed, nrOfParRead);
 
 	// Check if registered function has overflown response buffer.
 	assert(!stringLongerThan(cli->response, MAX_LENGTH_OF_RESPONSE));

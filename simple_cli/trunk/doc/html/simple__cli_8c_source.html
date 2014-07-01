@@ -129,100 +129,100 @@ $(document).ready(function(){initNavTree('simple__cli_8c_source.html','');});
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> isLonger;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">static</span> uint8_t cliParametersSplit(<a class="code" href="structcli__t.html">cli_t</a> *cli, <span class="keywordtype">char</span> *cmd, <span class="keywordtype">char</span> **name, <span class="keywordtype">char</span> **par)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">static</span> uint8_t cliParametersSplit(<a class="code" href="structcli__t.html">cli_t</a> *cli, <span class="keywordtype">char</span> *cmd, <span class="keywordtype">char</span> **name)</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Split cmd string to name and parameters.</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Get command name from command string.</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    *name = strtok(cmd, <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    uint8_t nrOfParRead = 0;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Check for NR_OF_PARAMETERS + 1 to see also if there is too many parameters</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> parCnt = 0; parCnt &lt; <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gad8bacdd29d97762d63a242cba6444b32">MAX_NR_OF_PARAMETERS</a> + 1; parCnt++)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">char</span> *p = NULL;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        p = strtok(NULL, <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span> (p != NULL)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">if</span> (parCnt &lt; MAX_NR_OF_PARAMETERS) cli-&gt;<a class="code" href="structcli__t.html#a51e40c51fa276e7cc13a3e399c6b29e2">parameters</a>[parCnt] = p;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            nrOfParRead++;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> nrOfParRead;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">static</span> uint8_t cliCommandCheck(<a class="code" href="structcli__t.html">cli_t</a> *cli, <span class="keywordtype">char</span> *name, uint8_t nrOfParRead)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    uint8_t cmdFound = 0;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">for</span> (uint16_t cmdIndex = 0; cmdIndex &lt; cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a>; cmdIndex++)</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        assert(!stringLongerThan(cli-&gt;<a class="code" href="structcli__t.html#a3179aea6fe53e20e272e45f6921cabc5">cmdName</a>[cmdIndex], <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gabd0278272d66be331cab5531626c475d">MAX_LENGTH_OF_CMD_NAME</a>));</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment">// First, number of parameters must match.</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">if</span> (nrOfParRead == cli-&gt;<a class="code" href="structcli__t.html#aeadecdddb1fab1aef408600b88426f92">nrOfParameters</a>[cmdIndex])</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="comment">// Check if cmd matches any registered command name.</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">if</span> (!strncmp(cli-&gt;<a class="code" href="structcli__t.html#a3179aea6fe53e20e272e45f6921cabc5">cmdName</a>[cmdIndex], name, <span class="keyword">sizeof</span>(cli-&gt;<a class="code" href="structcli__t.html#a3179aea6fe53e20e272e45f6921cabc5">cmdName</a>[cmdIndex])))</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                <span class="comment">// Clear response buffer.</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                cli-&gt;<a class="code" href="structcli__t.html#a00caea38300895956a4d6b7e90e95232">response</a>[0] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <span class="comment">// Execute matching command.</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                cli-&gt;<a class="code" href="structcli__t.html#a90bde48bbf1f7683b171c00e69d356a9">cmdFunction</a>[cmdIndex](cli-&gt;<a class="code" href="structcli__t.html#a00caea38300895956a4d6b7e90e95232">response</a>, <span class="keyword">sizeof</span>(cli-&gt;<a class="code" href="structcli__t.html#a00caea38300895956a4d6b7e90e95232">response</a>), &amp;cli-&gt;<a class="code" href="structcli__t.html#a51e40c51fa276e7cc13a3e399c6b29e2">parameters</a>[0]);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                cmdFound = 1;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">return</span> cmdFound;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="group___s_i_m_p_l_e___c_l_i.html#ga992a0d74b74b790c43d3cde61ee00e7b">   95</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#ga992a0d74b74b790c43d3cde61ee00e7b">CliInit</a>(<a class="code" href="structcli__t.html">cli_t</a> *cli)</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    memset(cli, 0, <span class="keyword">sizeof</span>(<a class="code" href="structcli__t.html">cli_t</a>));</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="group___s_i_m_p_l_e___c_l_i.html#ga01cfcf15f5fa99662be66ad602325b19">  100</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#ga01cfcf15f5fa99662be66ad602325b19">CliRegisterCommand</a>(<a class="code" href="structcli__t.html">cli_t</a> *cli, <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span>(*<span class="keyword">function</span>)(<span class="keywordtype">char</span> *response, <span class="keywordtype">size_t</span> responseSize, <span class="keywordtype">char</span> **par), uint8_t nrOfPar)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;{</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">// Check if number of parameters suits.</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    assert(nrOfPar &lt;= MAX_NR_OF_PARAMETERS);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">// Check if CLI definition space is full.</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    assert(cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a> &lt; <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gac5c0c1eca89291c3464b4ff294b13f05">MAX_NR_OF_CMDS</a>);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">// Check length of command name.</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    assert(!stringLongerThan(name, <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gabd0278272d66be331cab5531626c475d">MAX_LENGTH_OF_CMD_NAME</a>));</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">// Check if function pointer points anywhere.</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    assert(<span class="keyword">function</span> != NULL);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="comment">// Register number of parameters.</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    cli-&gt;<a class="code" href="structcli__t.html#aeadecdddb1fab1aef408600b88426f92">nrOfParameters</a>[cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a>] = nrOfPar;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">// Register command name.</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    strncpy(cli-&gt;<a class="code" href="structcli__t.html#a3179aea6fe53e20e272e45f6921cabc5">cmdName</a>[cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a>], name, <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gabd0278272d66be331cab5531626c475d">MAX_LENGTH_OF_CMD_NAME</a> - 1);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="comment">// Register command function.</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    cli-&gt;<a class="code" href="structcli__t.html#a90bde48bbf1f7683b171c00e69d356a9">cmdFunction</a>[cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a>] = <span class="keyword">function</span>;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a>++;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group___s_i_m_p_l_e___c_l_i.html#gac2f554f89e0d5ff45e2a29fd0a14fa81">  126</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gac2f554f89e0d5ff45e2a29fd0a14fa81">CliParseCommand</a>(<a class="code" href="structcli__t.html">cli_t</a> *cli, <span class="keywordtype">char</span> *cmd)</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">char</span> *name = 0;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">char</span> *par[<a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gad8bacdd29d97762d63a242cba6444b32">MAX_NR_OF_PARAMETERS</a>];</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// Get parameters from command string.</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    uint8_t nrOfParRead = 0;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Check for NR_OF_PARAMETERS + 1 to see also if there is too many parameters</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> parCnt = 0; parCnt &lt; <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gad8bacdd29d97762d63a242cba6444b32">MAX_NR_OF_PARAMETERS</a> + 1; parCnt++)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">char</span> *p = NULL;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        p = strtok(NULL, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span> (p != NULL)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">if</span> (parCnt &lt; MAX_NR_OF_PARAMETERS) cli-&gt;<a class="code" href="structcli__t.html#a51e40c51fa276e7cc13a3e399c6b29e2">parameters</a>[parCnt] = p;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            nrOfParRead++;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">return</span> nrOfParRead;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">static</span> uint8_t cliCommandCheck(<a class="code" href="structcli__t.html">cli_t</a> *cli, <span class="keywordtype">char</span> *name, uint8_t nrOfParRead)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    uint8_t cmdFound = 0;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">for</span> (uint16_t cmdIndex = 0; cmdIndex &lt; cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a>; cmdIndex++)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        assert(!stringLongerThan(cli-&gt;<a class="code" href="structcli__t.html#a3179aea6fe53e20e272e45f6921cabc5">cmdName</a>[cmdIndex], <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gabd0278272d66be331cab5531626c475d">MAX_LENGTH_OF_CMD_NAME</a>));</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment">// First, number of parameters must match.</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> (nrOfParRead == cli-&gt;<a class="code" href="structcli__t.html#aeadecdddb1fab1aef408600b88426f92">nrOfParameters</a>[cmdIndex])</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="comment">// Check if cmd matches any registered command name.</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="keywordflow">if</span> (!strncmp(cli-&gt;<a class="code" href="structcli__t.html#a3179aea6fe53e20e272e45f6921cabc5">cmdName</a>[cmdIndex], name, <span class="keyword">sizeof</span>(cli-&gt;<a class="code" href="structcli__t.html#a3179aea6fe53e20e272e45f6921cabc5">cmdName</a>[cmdIndex])))</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="comment">// Clear response buffer.</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                cli-&gt;<a class="code" href="structcli__t.html#a00caea38300895956a4d6b7e90e95232">response</a>[0] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="comment">// Execute matching command.</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                cli-&gt;<a class="code" href="structcli__t.html#a90bde48bbf1f7683b171c00e69d356a9">cmdFunction</a>[cmdIndex](cli-&gt;<a class="code" href="structcli__t.html#a00caea38300895956a4d6b7e90e95232">response</a>, <span class="keyword">sizeof</span>(cli-&gt;<a class="code" href="structcli__t.html#a00caea38300895956a4d6b7e90e95232">response</a>), &amp;cli-&gt;<a class="code" href="structcli__t.html#a51e40c51fa276e7cc13a3e399c6b29e2">parameters</a>[0]);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                cmdFound = 1;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">return</span> cmdFound;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="group___s_i_m_p_l_e___c_l_i.html#ga992a0d74b74b790c43d3cde61ee00e7b">   96</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#ga992a0d74b74b790c43d3cde61ee00e7b">CliInit</a>(<a class="code" href="structcli__t.html">cli_t</a> *cli)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;{</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    memset(cli, 0, <span class="keyword">sizeof</span>(<a class="code" href="structcli__t.html">cli_t</a>));</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="group___s_i_m_p_l_e___c_l_i.html#ga01cfcf15f5fa99662be66ad602325b19">  101</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#ga01cfcf15f5fa99662be66ad602325b19">CliRegisterCommand</a>(<a class="code" href="structcli__t.html">cli_t</a> *cli, <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span>(*<span class="keyword">function</span>)(<span class="keywordtype">char</span> *response, <span class="keywordtype">size_t</span> responseSize, <span class="keywordtype">char</span> **par), uint8_t nrOfPar)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">// Check if number of parameters suits.</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    assert(nrOfPar &lt;= MAX_NR_OF_PARAMETERS);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// Check if CLI definition space is full.</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    assert(cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a> &lt; <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gac5c0c1eca89291c3464b4ff294b13f05">MAX_NR_OF_CMDS</a>);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">// Check length of command name.</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    assert(!stringLongerThan(name, <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gabd0278272d66be331cab5531626c475d">MAX_LENGTH_OF_CMD_NAME</a>));</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">// Check if function pointer points anywhere.</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    assert(<span class="keyword">function</span> != NULL);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">// Register number of parameters.</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    cli-&gt;<a class="code" href="structcli__t.html#aeadecdddb1fab1aef408600b88426f92">nrOfParameters</a>[cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a>] = nrOfPar;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="comment">// Register command name.</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    strncpy(cli-&gt;<a class="code" href="structcli__t.html#a3179aea6fe53e20e272e45f6921cabc5">cmdName</a>[cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a>], name, <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gabd0278272d66be331cab5531626c475d">MAX_LENGTH_OF_CMD_NAME</a> - 1);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="comment">// Register command function.</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    cli-&gt;<a class="code" href="structcli__t.html#a90bde48bbf1f7683b171c00e69d356a9">cmdFunction</a>[cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a>] = <span class="keyword">function</span>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    cli-&gt;<a class="code" href="structcli__t.html#a644332672d347d16da5f567c1401ea33">nrOfCmdsRegistered</a>++;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="group___s_i_m_p_l_e___c_l_i.html#gac2f554f89e0d5ff45e2a29fd0a14fa81">  127</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#gac2f554f89e0d5ff45e2a29fd0a14fa81">CliParseCommand</a>(<a class="code" href="structcli__t.html">cli_t</a> *cli, <span class="keywordtype">char</span> *cmd)</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">char</span> *cmdNameParsed = 0;</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    uint8_t nrOfParRead = 0;</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    uint8_t cmdFound = 0;</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="comment">// Parse out command name and parameters,</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    nrOfParRead = cliParametersSplit(cli, cmd, &amp;name, par);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    nrOfParRead = cliParametersSplit(cli, cmd, &amp;cmdNameParsed);</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="comment">// then check if command matches any registered command.</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    cmdFound = cliCommandCheck(cli, name, nrOfParRead);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    cmdFound = cliCommandCheck(cli, cmdNameParsed, nrOfParRead);</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="comment">// Check if registered function has overflown response buffer.</span></div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    assert(!stringLongerThan(cli-&gt;<a class="code" href="structcli__t.html#a00caea38300895956a4d6b7e90e95232">response</a>, <a class="code" href="group___s_i_m_p_l_e___c_l_i.html#ga17e61582091ee023dd2d011f13e8f971">MAX_LENGTH_OF_RESPONSE</a>));</div>
@@ -238,10 +238,10 @@ $(document).ready(function(){initNavTree('simple__cli_8c_source.html','');});
 <div class="ttc" id="structcli__t_html_a90bde48bbf1f7683b171c00e69d356a9"><div class="ttname"><a href="structcli__t.html#a90bde48bbf1f7683b171c00e69d356a9">cli_t::cmdFunction</a></div><div class="ttdeci">void(* cmdFunction[MAX_NR_OF_CMDS])(char *response, size_t responseSize, char **par)</div><div class="ttdoc">Array of pointers to the functions of registered commands. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8h_source.html#l00049">simple_cli.h:49</a></div></div>
 <div class="ttc" id="group___s_i_m_p_l_e___c_l_i_html_gabd0278272d66be331cab5531626c475d"><div class="ttname"><a href="group___s_i_m_p_l_e___c_l_i.html#gabd0278272d66be331cab5531626c475d">MAX_LENGTH_OF_CMD_NAME</a></div><div class="ttdeci">#define MAX_LENGTH_OF_CMD_NAME</div><div class="ttdoc">Longest command name allowed to be registered. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8h_source.html#l00037">simple_cli.h:37</a></div></div>
 <div class="ttc" id="structcli__t_html"><div class="ttname"><a href="structcli__t.html">cli_t</a></div><div class="ttdoc">Main CLI structure definition. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8h_source.html#l00044">simple_cli.h:44</a></div></div>
-<div class="ttc" id="group___s_i_m_p_l_e___c_l_i_html_ga01cfcf15f5fa99662be66ad602325b19"><div class="ttname"><a href="group___s_i_m_p_l_e___c_l_i.html#ga01cfcf15f5fa99662be66ad602325b19">CliRegisterCommand</a></div><div class="ttdeci">void CliRegisterCommand(cli_t *cli, char *name, void(*function)(char *response, size_t responseSize, char **par), uint8_t nrOfPar)</div><div class="ttdoc">Registers selected function to CLI command definitions. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8c_source.html#l00100">simple_cli.c:100</a></div></div>
+<div class="ttc" id="group___s_i_m_p_l_e___c_l_i_html_ga01cfcf15f5fa99662be66ad602325b19"><div class="ttname"><a href="group___s_i_m_p_l_e___c_l_i.html#ga01cfcf15f5fa99662be66ad602325b19">CliRegisterCommand</a></div><div class="ttdeci">void CliRegisterCommand(cli_t *cli, char *name, void(*function)(char *response, size_t responseSize, char **par), uint8_t nrOfPar)</div><div class="ttdoc">Registers selected function to CLI command definitions. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8c_source.html#l00101">simple_cli.c:101</a></div></div>
 <div class="ttc" id="structcli__t_html_a51e40c51fa276e7cc13a3e399c6b29e2"><div class="ttname"><a href="structcli__t.html#a51e40c51fa276e7cc13a3e399c6b29e2">cli_t::parameters</a></div><div class="ttdeci">char * parameters[MAX_NR_OF_PARAMETERS]</div><div class="ttdoc">Storage for parsed parameters. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8h_source.html#l00054">simple_cli.h:54</a></div></div>
-<div class="ttc" id="group___s_i_m_p_l_e___c_l_i_html_gac2f554f89e0d5ff45e2a29fd0a14fa81"><div class="ttname"><a href="group___s_i_m_p_l_e___c_l_i.html#gac2f554f89e0d5ff45e2a29fd0a14fa81">CliParseCommand</a></div><div class="ttdeci">char * CliParseCommand(cli_t *cli, char *cmd)</div><div class="ttdoc">Checks if passed command matches any registered command and executes that command function...</div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8c_source.html#l00126">simple_cli.c:126</a></div></div>
-<div class="ttc" id="group___s_i_m_p_l_e___c_l_i_html_ga992a0d74b74b790c43d3cde61ee00e7b"><div class="ttname"><a href="group___s_i_m_p_l_e___c_l_i.html#ga992a0d74b74b790c43d3cde61ee00e7b">CliInit</a></div><div class="ttdeci">void CliInit(cli_t *cli)</div><div class="ttdoc">Initialization function for CLI. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8c_source.html#l00095">simple_cli.c:95</a></div></div>
+<div class="ttc" id="group___s_i_m_p_l_e___c_l_i_html_gac2f554f89e0d5ff45e2a29fd0a14fa81"><div class="ttname"><a href="group___s_i_m_p_l_e___c_l_i.html#gac2f554f89e0d5ff45e2a29fd0a14fa81">CliParseCommand</a></div><div class="ttdeci">char * CliParseCommand(cli_t *cli, char *cmd)</div><div class="ttdoc">Checks if passed command matches any registered command and executes that command function...</div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8c_source.html#l00127">simple_cli.c:127</a></div></div>
+<div class="ttc" id="group___s_i_m_p_l_e___c_l_i_html_ga992a0d74b74b790c43d3cde61ee00e7b"><div class="ttname"><a href="group___s_i_m_p_l_e___c_l_i.html#ga992a0d74b74b790c43d3cde61ee00e7b">CliInit</a></div><div class="ttdeci">void CliInit(cli_t *cli)</div><div class="ttdoc">Initialization function for CLI. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8c_source.html#l00096">simple_cli.c:96</a></div></div>
 <div class="ttc" id="structcli__t_html_a00caea38300895956a4d6b7e90e95232"><div class="ttname"><a href="structcli__t.html#a00caea38300895956a4d6b7e90e95232">cli_t::response</a></div><div class="ttdeci">char response[MAX_LENGTH_OF_RESPONSE]</div><div class="ttdoc">Response storage buffer. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8h_source.html#l00060">simple_cli.h:60</a></div></div>
 <div class="ttc" id="structcli__t_html_aeadecdddb1fab1aef408600b88426f92"><div class="ttname"><a href="structcli__t.html#aeadecdddb1fab1aef408600b88426f92">cli_t::nrOfParameters</a></div><div class="ttdeci">uint8_t nrOfParameters[MAX_NR_OF_CMDS]</div><div class="ttdoc">Array of number of parameters for each registered function. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8h_source.html#l00051">simple_cli.h:51</a></div></div>
 <div class="ttc" id="structcli__t_html_a3179aea6fe53e20e272e45f6921cabc5"><div class="ttname"><a href="structcli__t.html#a3179aea6fe53e20e272e45f6921cabc5">cli_t::cmdName</a></div><div class="ttdeci">char cmdName[MAX_NR_OF_CMDS][MAX_LENGTH_OF_CMD_NAME]</div><div class="ttdoc">String array for names of registered commands. </div><div class="ttdef"><b>Definition:</b> <a href="simple__cli_8h_source.html#l00047">simple_cli.h:47</a></div></div>
@@ -252,7 +252,7 @@ $(document).ready(function(){initNavTree('simple__cli_8c_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_957a8f558588fd4c946684c753bb33e0.html">simple_cli</a></li><li class="navelem"><a class="el" href="simple__cli_8c.html">simple_cli.c</a></li>
-    <li class="footer">Generated on Sat Jun 28 2014 09:36:26 for Simple CLI by
+    <li class="footer">Generated on Tue Jul 1 2014 08:33:54 for Simple CLI by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

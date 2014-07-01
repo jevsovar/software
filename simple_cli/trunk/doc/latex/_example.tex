@@ -13,7 +13,7 @@ Programming procedure\+:
 \item prepare command function 
 \begin{DoxyCode}
 \textcolor{comment}{// This command accepts two string parameters, converts them to integers and returns their sum.}
-\textcolor{keywordtype}{void} \hyperlink{main_8c_a2e1da4da72dfb1bd012b07ae14d97435}{sum}(\textcolor{keywordtype}{char} *response, \textcolor{keywordtype}{size\_t} responseSize, \textcolor{keywordtype}{char} **par)
+\textcolor{keywordtype}{void} \hyperlink{main_8c_aa7e0a65433afb9dc52ff3c770467eabb}{sum}(\textcolor{keywordtype}{char} *response, \textcolor{keywordtype}{size\_t} responseSize, \textcolor{keywordtype}{char} **par)
 \{
     \textcolor{comment}{// Get pointers to parameter strings.}
     \textcolor{keywordtype}{char} *par1 = *(par + 0);
@@ -26,7 +26,7 @@ Programming procedure\+:
     sscanf(par1, \textcolor{stringliteral}{"%d"}, &x);
     sscanf(par2, \textcolor{stringliteral}{"%d"}, &y);
 
-    \textcolor{keywordtype}{int} \hyperlink{main_8c_a2e1da4da72dfb1bd012b07ae14d97435}{sum} = x + y;
+    \textcolor{keywordtype}{int} \hyperlink{main_8c_aa7e0a65433afb9dc52ff3c770467eabb}{sum} = x + y;
 
     \textcolor{comment}{// Write response.}
     \_snprintf(response, responseSize - 1, \textcolor{stringliteral}{"sum = %d\(\backslash\)r\(\backslash\)n"}, sum);
@@ -35,7 +35,7 @@ Programming procedure\+:
 
 \item register command 
 \begin{DoxyCode}
-\hyperlink{group___s_i_m_p_l_e___c_l_i_ga01cfcf15f5fa99662be66ad602325b19}{CliRegisterCommand}(&cli, \textcolor{stringliteral}{"sum"}, \hyperlink{main_8c_a2e1da4da72dfb1bd012b07ae14d97435}{sum}, 2);
+\hyperlink{group___s_i_m_p_l_e___c_l_i_ga01cfcf15f5fa99662be66ad602325b19}{CliRegisterCommand}(&cli, \textcolor{stringliteral}{"sum"}, \hyperlink{main_8c_aa7e0a65433afb9dc52ff3c770467eabb}{sum}, 2);
 \end{DoxyCode}
 
 \item everytime you receive new command, check for matching and use the response if any 

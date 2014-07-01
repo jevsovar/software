@@ -107,7 +107,7 @@ $(document).ready(function(){initNavTree('_example.html','');});
 <li>initialize <code>cli</code> <div class="fragment"><div class="line"><a class="code" href="group___s_i_m_p_l_e___c_l_i.html#ga992a0d74b74b790c43d3cde61ee00e7b">CliInit</a>(&amp;cli);</div>
 </div><!-- fragment --></li>
 <li>prepare command function <div class="fragment"><div class="line"><span class="comment">// This command accepts two string parameters, converts them to integers and returns their sum.</span></div>
-<div class="line"><span class="keywordtype">void</span> <a class="code" href="main_8c.html#a2e1da4da72dfb1bd012b07ae14d97435">sum</a>(<span class="keywordtype">char</span> *response, <span class="keywordtype">size_t</span> responseSize, <span class="keywordtype">char</span> **par)</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code" href="main_8c.html#aa7e0a65433afb9dc52ff3c770467eabb">sum</a>(<span class="keywordtype">char</span> *response, <span class="keywordtype">size_t</span> responseSize, <span class="keywordtype">char</span> **par)</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// Get pointers to parameter strings.</span></div>
 <div class="line">    <span class="keywordtype">char</span> *par1 = *(par + 0);</div>
@@ -120,13 +120,13 @@ $(document).ready(function(){initNavTree('_example.html','');});
 <div class="line">    sscanf(par1, <span class="stringliteral">&quot;%d&quot;</span>, &amp;x);</div>
 <div class="line">    sscanf(par2, <span class="stringliteral">&quot;%d&quot;</span>, &amp;y);</div>
 <div class="line"></div>
-<div class="line">    <span class="keywordtype">int</span> <a class="code" href="main_8c.html#a2e1da4da72dfb1bd012b07ae14d97435">sum</a> = x + y;</div>
+<div class="line">    <span class="keywordtype">int</span> <a class="code" href="main_8c.html#aa7e0a65433afb9dc52ff3c770467eabb">sum</a> = x + y;</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// Write response.</span></div>
 <div class="line">    _snprintf(response, responseSize - 1, <span class="stringliteral">&quot;sum = %d\r\n&quot;</span>, sum);</div>
 <div class="line">}</div>
 </div><!-- fragment --></li>
-<li>register command <div class="fragment"><div class="line"><a class="code" href="group___s_i_m_p_l_e___c_l_i.html#ga01cfcf15f5fa99662be66ad602325b19">CliRegisterCommand</a>(&amp;cli, <span class="stringliteral">&quot;sum&quot;</span>, <a class="code" href="main_8c.html#a2e1da4da72dfb1bd012b07ae14d97435">sum</a>, 2);</div>
+<li>register command <div class="fragment"><div class="line"><a class="code" href="group___s_i_m_p_l_e___c_l_i.html#ga01cfcf15f5fa99662be66ad602325b19">CliRegisterCommand</a>(&amp;cli, <span class="stringliteral">&quot;sum&quot;</span>, <a class="code" href="main_8c.html#aa7e0a65433afb9dc52ff3c770467eabb">sum</a>, 2);</div>
 </div><!-- fragment --></li>
 <li>everytime you receive new command, check for matching and use the response if any <div class="fragment"><div class="line"><span class="keywordtype">char</span> cmd[] = <span class="stringliteral">&quot;sum 12 5&quot;</span>;</div>
 <div class="line"><span class="keywordtype">char</span> *response = NULL;</div>
@@ -147,7 +147,7 @@ $(document).ready(function(){initNavTree('_example.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Jun 28 2014 09:36:26 for Simple CLI by
+    <li class="footer">Generated on Tue Jul 1 2014 08:33:54 for Simple CLI by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>
